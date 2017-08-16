@@ -15,3 +15,6 @@ if ( file_exists( OMG_FORMS_MAILCHIMP_DIR . '/vendor' ) ) {
 require_once OMG_FORMS_MAILCHIMP_DIR . '/includes/mailchimp.php';
 require_once OMG_FORMS_MAILCHIMP_DIR . '/includes/validation.php';
 require_once OMG_FORMS_MAILCHIMP_DIR . '/includes/helpers.php';
+require_once OMG_FORMS_MAILCHIMP_DIR . '/includes/settings.php';
+
+\OMGForms\Mailchimp\Settings\setup();

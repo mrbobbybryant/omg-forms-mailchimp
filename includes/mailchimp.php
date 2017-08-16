@@ -7,24 +7,16 @@ use OMGForms\Mailchimp\Helpers;
 function save_form_as_mailchimp( $args, $form ) {
 
 	if ( $form[ 'form_type' ] === 'mailchimp' ) {
-		$MailChimp = new MailChimp('19600dbbc49817244068df5866c84daf-us16');
+		$MailChimp = new MailChimp( get_option( 'mailchimp_api_key' ) );
 
-		$email = Helpers\get_email_address( $form );
+		$data = Helpers\prepare_mailchimp_form_fields( $args );
+		$data[ 'status' ] = 'subscribed';
 
-		if ( empty( $email ) ) {
-			return new \WP_Error(
-				'omg_form_validation_fail',
-				'Mailchimp forms must have an email field.',
-				array( 'status' => 400 )
-			);
+		if ( isset( $form[ 'segment_id' ] ) ) {
+			$data[ 'segments' ] = $form[ 'segment_id' ];
 		}
 
-		$email_address = $args[ sprintf( 'omg-forms-%s', $email[ 'slug' ]  ) ];
-
-		$result = $MailChimp->post("lists/" . $form['list_id'] . "/members", [
-			'email_address' => $email_address,
-			'status'        => 'subscribed',
-		]);
+		$result = $MailChimp->post( "lists/" . $form['list_id'] . "/members", $data );
 
 		if ( isset( $result[ 'status' ] ) && 'subscribed' === $result[ 'status' ] ) {
 			return true;
