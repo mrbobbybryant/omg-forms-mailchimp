@@ -1,8 +1,7 @@
 {
-  "name": "omg-forms-mailchimp",
+  "name": "developwithwp/omg-forms-mailchimp",
   "description": "An OMG Forms addon, which adds support for mailchimp forms.",
-  "version": "0.1.0",
-  "type": "library",
+  "type": "package",
   "keywords": [],
   "homepage": "https://github.com/mrbobbybryant/omg-forms-mailchimp",
   "license": "GPL-2.0+",
@@ -20,7 +19,8 @@
     }
   ],
   "require": {
-    "drewm/mailchimp-api": "^2.4"
+    "drewm/mailchimp-api": "^2.4",
+    "developwithwp/omg-forms": "0.5.*"
   },
   "require-dev": {},
   "autoload": {
