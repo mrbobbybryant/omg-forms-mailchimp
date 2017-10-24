@@ -27,7 +27,7 @@ function save_form_as_mailchimp( $result, $args, $form ) {
 		}
 	}
 
-	return $result;
+	return true;
 }
 
-add_action( 'omg_forms_save_data', __NAMESPACE__ .  '\save_form_as_mailchimp', 10, 3 );
+add_filter( 'omg_forms_save_data', __NAMESPACE__ .  '\save_form_as_mailchimp', 10, 3 );
